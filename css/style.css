@@ -1,0 +1,1640 @@
+/*----- 
+            Global: generelle regler for hele sited som fx. font family, serif, color etc.
+-----*/
+
+* {
+    box-sizing: border-box;
+    margin: 0%;
+
+}
+
+body {
+    padding-bottom: 5%;
+}
+
+h1 {
+    font-family: overskrift;
+    letter-spacing: 5px;
+    font-size: 3.6em;
+}
+
+h2 {
+    font-family: overskrift;
+    letter-spacing: 3px;
+    font-size: 2em;
+}
+
+p {
+    font-family: paragraf, sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 5%;
+}
+
+@font-face {
+    font-family: paragraf;
+    src: url(../fonts/Raleway/Raleway-Regular.ttf);
+
+}
+
+@font-face {
+    font-family: overskrift;
+    src: url(../fonts/bebas_neue/bebas_neue.otf);
+}
+
+
+#grid {
+    display: grid;
+
+}
+
+.wrapper {
+    margin: 3%;
+    text-align: center;
+}
+
+
+
+/*-- NAV - LINK I HTML --*/
+
+a {
+    text-decoration: none;
+    color: #232323;
+
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: skyblue;
+}
+
+#menuToggle {
+    display: block;
+    position: relative;
+    top: 50px;
+    padding-left: 3%;
+
+    z-index: 1;
+
+    -webkit-user-select: none;
+}
+
+#menuToggle input {
+    display: block;
+    width: 50px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: 30px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
+    -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+
+#menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background: #cdcdcd;
+    border-radius: 3px;
+
+    z-index: 1;
+
+    transform-origin: 4px 0px;
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+    transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+
+#menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+
+#menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+
+#menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+
+#menu {
+    position: absolute;
+    width: 250px;
+    margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 125px;
+
+    background-color: rgba(140, 140, 140, 0.5);
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+#menu li {
+    padding: 10px 0;
+    font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+
+#menuToggle input:checked ~ ul {
+    transform: none;
+}
+
+/*-- Forside --*/
+
+#fs-header {
+    background-image: url(../images/forside-header-tablet.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    background-size: 1000px;
+    height: 1090px;
+    width: 100%;
+}
+
+.fs-content {
+    margin-top: 400px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.fs-content img {
+    width: 30%
+}
+
+#fs-header a {
+    text-decoration: none;
+}
+
+#fs-header a h2 {
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 5px;
+    margin: 130px 30% 2% 30%;
+    color: black;
+    animation: bf-h1 3s ease;
+}
+
+.bf-h1 {
+    animation: bf-h1 3s ease;
+    z-index: 100;
+    top: 100px;
+}
+
+.bf-logo {
+    top: 100px;
+    z-index: 100;
+    animation: bf-logo 1.5s ease;
+}
+
+.bf-logo-port {
+    width: 25%;
+}
+
+@keyframes bf-logo {
+    to {
+        transform: translateX(0px);
+    }
+    from {
+        transform: translateX(2000px);
+    }
+}
+
+@keyframes bf-h1 {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bf-port {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.fs-refleksioner {
+    margin-bottom: 10%;
+    min-height: 760px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.refleksion1 {
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+}
+
+.refleksion2 {
+    grid-row: 1 / 2;
+    grid-column: 4 / 7;
+}
+
+.refleksion3 {
+    grid-row: 10 / 11;
+    grid-column: 1 / 3;
+}
+
+.refleksion4 {
+    grid-row: 10 / 11;
+    grid-column: 3 / 5;
+}
+
+.refleksion5 {
+    grid-row: 10 / 11;
+    grid-column: 5 / 7;
+}
+
+.reflek-img {
+    grid-row: 2 / 11;
+    grid-column: 1 / 7;
+    width: 100%;
+    position: relative;
+
+}
+
+.fs-refleksioner p {
+    border: 2px solid #00b8f1;
+    border-radius: 5px;
+    padding: 5%;
+}
+
+.fs-skills {
+    margin-bottom: 10%;
+}
+
+.fs-skills img {
+    width: 100%;
+}
+
+
+.fs-galleri {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+#fs-g-1 {
+    grid-row: 3 / 4;
+    grid-column: 1 / 8;
+    width: 100%;
+
+}
+
+#fs-g-2 {
+    grid-row: 3 / 4;
+    grid-column: 8 / 13;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+#fs-g-3 {
+    grid-row: 1 / 2;
+    grid-column: 1 / 7;
+    width: 100%;
+
+
+
+}
+
+#fs-g-4 {
+    grid-row: 1 / 2;
+    grid-column: 7 / 13;
+    width: 100%;
+
+
+}
+
+#fs-g-5 {
+    grid-row: 2 / 3;
+    grid-column: 1 / 13;
+    width: 100%;
+
+
+
+}
+
+
+/*-- Portfolie --*/
+
+.port-header {
+    background-image: url(../images/portfolie-header-mobile.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 800px;
+    height: 1000px;
+    width: 100%;
+    text-align: center;
+    padding-top: 5%;
+    color: white;
+    animation: bf-port 1.5s ease;
+}
+
+.port-header h1 {
+    margin: 5%;
+}
+
+.pict-nav {
+    text-align: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 70%;
+}
+
+.cases {
+    color: white;
+    display: grid;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    grid-gap: 20px;
+    margin: auto;
+}
+
+.produkter {
+    color: white;
+    display: grid;
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+    grid-gap: 20px;
+    margin: auto;
+}
+
+.cases h2 {
+    text-align: center;
+    color: white;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
+
+.salling-nav {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    text-align: center;
+}
+
+.salling-nav img {
+    width: 100%;
+}
+
+.fstop-nav {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    text-align: center;
+}
+
+.fstop-nav img {
+    width: 100%;
+}
+
+.loeves-nav {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    text-align: center;
+}
+
+.loeves-nav img {
+    width: 100%;
+}
+
+.produkter h2 {
+    color: white;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+}
+
+.typo-nav {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    text-align: center;
+}
+
+.typo-nav img {
+    width: 100%;
+}
+
+.tuborg-nav {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    text-align: center;
+}
+
+.tuborg-nav img {
+    width: 100%;
+}
+
+
+.port-height {
+    height: 900px;
+    width: 100%;
+}
+
+.port-case1 {
+    background-image: url(../images/case1-mobil.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 0%;
+
+
+}
+
+.port-lay h1 {
+    color: white;
+    padding-left: 10%;
+    padding-top: 40%;
+}
+
+.port-lay img {
+    padding-left: 10%;
+}
+
+.port-lay p {
+    display: none;
+}
+
+.port-case2 {
+    background-image: url(../images/case2-mobil.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 0%;
+}
+
+.port-case3 {
+    background-image: url(../images/case3-mobil.png);
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+
+.port-typografi {
+    background-image: url(../images/typografi-mobil.png);
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+
+.port-tuborg {
+    background-image: url(../images/tuborg-mobil.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0%;
+    background-attachment: fixed;
+
+}
+
+
+/*-- Case1 --*/
+
+#case1 {
+    background-image: url(../images/case1-mobil.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    height: 900px;
+    width: 100%;
+    color: white;
+    margin-bottom: 5%;
+}
+
+#case1 h1 {
+    padding-top: 300px;
+    padding-left: 10%;
+}
+
+#case1 p {
+    padding-left: 10%;
+}
+
+#case1 img {
+    padding-top: 180px;
+    padding-left: 10%;
+    width: 23%;
+    transition: width 0.3s;
+}
+
+#case1 img:hover {
+    width: 26%;
+}
+
+#case1 a {
+    color: white;
+}
+
+#case1 a:visited {
+    color: white;
+}
+
+.case-grid {
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(150px, auto);
+}
+
+.toolbox img {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    width: 100%;
+}
+
+.case-logo {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    width: 100%;
+}
+
+.resume {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+
+.case-billede1 {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+    width: 100%;
+}
+
+.refleksion {
+    grid-column: 1 / 2;
+    grid-row: 5 / 6;
+}
+
+.case-billede2 {
+    grid-column: 1 / 2;
+    grid-row: 6 / 7;
+    width: 100%;
+}
+
+.hvad-har-jeg {
+    grid-row: 7 / 8;
+}
+
+.case-billede3 {
+    grid-column: 1 / 2;
+    grid-row: 8 / 9;
+    width: 100%;
+}
+
+.case-grid img {
+    margin: auto
+}
+
+/*-- Case2 --*/
+
+#case2 {
+    background-image: url(../images/case2-mobil.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    height: 900px;
+    width: 100%;
+    color: white;
+    margin-bottom: 5%;
+}
+
+#case2 h1 {
+    padding-top: 300px;
+    padding-left: 10%;
+}
+
+#case2 p {
+    padding-left: 10%;
+}
+
+#case2 img {
+    padding-top: 180px;
+    padding-left: 10%;
+    width: 23%;
+    transition: width 0.3s;
+
+}
+
+#case2 img:hover {
+    width: 26%;
+}
+
+#case2 a {
+    color: white;
+}
+
+#case2 a:visited {
+    color: white;
+}
+
+/*-- Case3 --*/
+
+#case3 {
+    background-image: url(../images/case3-mobil.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    height: 900px;
+    width: 100%;
+    color: white;
+    margin-bottom: 5%;
+}
+
+#case3 h1 {
+    padding-top: 300px;
+    padding-left: 10%;
+}
+
+#case3 p {
+    padding-left: 10%;
+}
+
+#case3 img {
+    padding-top: 180px;
+    padding-left: 10%;
+    width: 23%;
+    transition: width 0.3s;
+
+
+}
+
+#case3 img:hover {
+    width: 26%;
+}
+
+#case3 a {
+    color: white;
+}
+
+#case3 a:visited {
+    color: white;
+}
+
+/*-- typografi --*/
+
+#typografi {
+    background-image: url(../images/typografi-mobil.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    height: 900px;
+    width: 100%;
+    color: white;
+    margin-bottom: 5%;
+}
+
+#typografi h1 {
+    padding-top: 300px;
+    padding-left: 10%;
+}
+
+#typografi p {
+    padding-left: 10%;
+}
+
+#typografi img {
+    padding-top: 180px;
+    padding-left: 10%;
+    width: 23%;
+    transition: width 0.3s;
+
+}
+
+#typografi img:hover {
+    width: 26%;
+}
+
+#typografi a {
+    color: white;
+}
+
+#typografi a:visited {
+    color: white;
+}
+
+/*-- tuborg --*/
+
+#tuborg {
+    background-image: url(../images/tuborg-mobil.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    height: 900px;
+    width: 100%;
+    color: white;
+    margin-bottom: 5%;
+}
+
+#tuborg h1 {
+    padding-top: 300px;
+    padding-left: 10%;
+}
+
+#tuborg p {
+    padding-left: 10%;
+}
+
+#tuborg img {
+    padding-top: 180px;
+    padding-left: 10%;
+    width: 23%;
+    transition: width 0.3s;
+
+}
+
+#tuborg img:hover {
+    width: 26%;
+}
+
+#tuborg a {
+    color: white;
+}
+
+#tuborg a:visited {
+    color: white;
+}
+
+/*-----------------------------------------------------------------------------------
+
+Resposive sizes: Sæt sizing ind til de forskellige størrelser.
+
+-----*/
+
+/*tablet*/
+
+@media (min-width:768px) and (max-width: 1023px) {
+    p {
+        font-size: 1.5em;
+    }
+
+    #fs-header {
+        background-image: url(../images/forside-header-tablet.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% -200px;
+        background-size: 1300px;
+        height: 1090px;
+        width: 100%;
+    }
+
+    .fs-content {
+        text-align: left;
+        margin-top: 510px;
+        margin-left: 10%;
+
+    }
+    .fs-content img {
+        width: 20%
+    }
+
+    #fs-header a h2 {
+        margin: 180px 40% 2% 40%;
+    }
+
+    .fs-refleksioner {
+        background-size: 60%;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+    }
+
+    .refleksion1 {
+        grid-row: 1 / 2;
+        grid-column: 1 / 4;
+    }
+
+    .refleksion2 {
+        grid-row: 1 / 2;
+        grid-column: 4 / 7;
+    }
+
+    .refleksion3 {
+        grid-row: 10 / 11;
+        grid-column: 1 / 3;
+    }
+
+    .refleksion4 {
+        grid-row: 10 / 11;
+        grid-column: 3 / 5;
+    }
+
+    .refleksion5 {
+        grid-row: 10;
+        grid-column: 5 / 7;
+    }
+
+    .reflek-img {
+        grid-row: 2 / 10;
+        grid-column: 1 / 7;
+    }
+
+    .fs-skills {
+        width: 60%;
+        margin: 0% 20% 10% 20%;
+
+    }
+    #fs-g-1 {
+        grid-row: 1 / 4;
+        grid-column: 1 / 4;
+        width: 100%;
+        height: 100%;
+
+    }
+    #fs-g-2 {
+        grid-row: 1 / 4;
+        grid-column: 4 / 7;
+        width: 100%;
+        margin: auto;
+    }
+    #fs-g-3 {
+        grid-row: 1 / 2;
+        grid-column: 7 / 10;
+        width: 100%;
+        margin: auto;
+    }
+    #fs-g-4 {
+        grid-row: 1 / 2;
+        grid-column: 10 / 13;
+        width: 100%;
+        margin: auto;
+
+    }
+    #fs-g-5 {
+        margin: auto;
+        grid-row: 2 / 4;
+        grid-column: 7 / 13;
+        width: 100%;
+
+
+
+
+    }
+
+    /*-- Portfolie --*/
+    .port-header {
+        background-image: url(../images/portfolie-header-tablet.png);
+        background-repeat: no-repeat;
+        background-size: 1100px;
+        background-position: 20% 0%;
+        height: 900px;
+        width: 100%;
+    }
+
+    .pict-nav {
+        margin: auto;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 20px;
+    }
+
+    .cases {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    .produkter {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+
+    }
+
+    .port-height {
+        height: 900px;
+        width: 100%;
+    }
+    .port-case1 {
+        background-image: url(../images/case1-tablet.png);
+    }
+
+    .port-case2 {
+        background-image: url(../images/case2-tablet.png);
+    }
+    .port-case3 {
+        background-image: url(../images/case3-tablet.png);
+    }
+    .port-typografi {
+        background-image: url(../images/typografi-tablet.png);
+    }
+    .port-tuborg {
+        background-image: url(../images/tuborg-tablet.png);
+    }
+    .port-lay h1 {
+        padding-top: 20%;
+    }
+    .port-lay p {
+        display: block;
+        background-color: rgba(250, 250, 250, 0.9);
+        overflow: auto;
+        margin: 2% 20% 2% 20%;
+        padding: 2%;
+        border-radius: 10px;
+    }
+    .port-lay img {
+        padding-left: 20%;
+
+    }
+    /*-- Case1 --*/
+    #case1 {
+        background-image: url(../images/case1-tablet.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        height: 900px;
+        width: 100%;
+    }
+
+    #case1 h1 {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+    #case1 img {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+
+    .case-grid {
+        margin-left: 5%;
+        margin-right: 5%;
+        display: grid;
+        grid-gap: 50px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(150px, auto);
+    }
+
+    .case-grid img {
+        width: 80%;
+    }
+    .toolbox {
+        text-align: center;
+        grid-column: 1 / 4;
+        grid-row: 1 / 2;
+    }
+
+    .case-logo {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    .resume {
+        grid-column: 2 / 4;
+        grid-row: 2 / 3;
+    }
+
+    .case-billede1 {
+        grid-column: 2 / 4;
+        grid-row: 3 / 4;
+    }
+
+    .refleksion {
+        grid-column: 1 / 2;
+        grid-row: 3 / 5;
+    }
+
+    .case-billede2 {
+        grid-column: 1 / 2;
+        grid-row: 6 / 7;
+    }
+
+    .hvad-har-jeg {
+        grid-column: 2 / 4;
+        grid-row: 4 / 7;
+    }
+
+    .case-billede3 {
+        grid-column: 2 / 4;
+        grid-row: 6 / 7;
+    }
+
+    /*-- Case2 --*/
+    #case2 {
+        background-image: url(../images/case2-tablet.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 0%;
+        height: 900px;
+        width: 100%;
+        color: white;
+        margin-bottom: 5%;
+    }
+
+    #case2 h1 {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+    #case2 p {
+        padding-left: 10%;
+    }
+
+    #case2 img {
+        padding-top: 180px;
+        padding-left: 10%;
+    }
+    #case2 a {
+        color: white;
+    }
+    #case2 a:visited {
+        color: white;
+    }
+
+    /*-- Case3 --*/
+    #case3 {
+        background-image: url(../images/case3-tablet.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 0%;
+        height: 900px;
+        width: 100%;
+        color: white;
+        margin-bottom: 5%;
+    }
+
+    #case3 h1 {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+    #case3 p {
+        padding-left: 10%;
+    }
+
+    #case3 img {
+        padding-top: 180px;
+        padding-left: 10%;
+    }
+    #case3 a {
+        color: white;
+    }
+    #case3 a:visited {
+        color: white;
+    }
+
+    /*-- typografi --*/
+    #typografi {
+        background-image: url(../images/typografi-tablet.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 0%;
+        height: 900px;
+        width: 100%;
+        color: white;
+        margin-bottom: 5%;
+    }
+
+    #typografi h1 {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+    #typografi p {
+        padding-left: 10%;
+    }
+
+    #typografi img {
+        padding-top: 180px;
+        padding-left: 10%;
+    }
+    #typografi a {
+        color: white;
+    }
+    #typografi a:visited {
+        color: white;
+    }
+
+    /*-- tuborg --*/
+    #tuborg {
+        background-image: url(../images/tuborg-tablet.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 0%;
+        height: 900px;
+        width: 100%;
+        color: white;
+        margin-bottom: 5%;
+    }
+
+    #tuborg h1 {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+    #tuborg p {
+        padding-left: 10%;
+    }
+
+    #tuborg img {
+        padding-top: 180px;
+        padding-left: 10%;
+    }
+    #tuborg a {
+        color: white;
+    }
+    #tuborg a:visited {
+        color: white;
+    }
+}
+
+/*desktop*/
+
+@media (min-width:1024px) {
+    p {
+        font-size: 1.5em;
+    }
+
+    #fs-header {
+        background-image: url(../images/forside-header-desktop.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 70% 0%;
+        background-size: 2000px;
+        height: 1090px;
+        width: 100%;
+    }
+
+
+    .fs-content {
+        margin-top: 510px;
+        margin-left: 10%;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        grid-template-rows: auto;
+
+
+    }
+    .fs-content img {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    .fs-content h1 {
+        margin: auto;
+        margin-top: 80px;
+        margin-left: -190px;
+        font-size: 5em;
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    #fs-header a h2 {
+        margin: 250px 40% 2% 40%;
+    }
+    .fs-refleksioner {
+        margin: 10%;
+        margin-top: 0%;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        min-height: 1050px;
+    }
+    .fs-refleksioner p {
+        padding: 10%;
+    }
+    .refleksion1 {
+        margin: auto;
+        grid-row: 1 / 2;
+        grid-column: 1 / 4;
+        min-height: 220px;
+    }
+    .refleksion2 {
+        margin: auto;
+        grid-row: 1 / 2;
+        grid-column: 4 / 7;
+        min-height: 220px;
+
+    }
+
+    .refleksion3 {
+        margin: auto;
+        grid-row: 5 / 6;
+        grid-column: 1 / 3;
+        min-height: 150px;
+    }
+
+    .refleksion4 {
+        margin: auto;
+        grid-row: 5 / 6;
+        grid-column: 3 / 5;
+        min-height: 150px;
+
+    }
+
+    .refleksion5 {
+        margin: auto;
+        grid-row: 5 / 6;
+        grid-column: 5 / 7;
+        min-height: 150px;
+
+    }
+    .reflek-img {
+        grid-row: 2 / 5;
+        ;
+        grid-column: 1 / 7;
+    }
+
+    .fs-skills {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    #fs-g-1 {
+        grid-row: 1 / 4;
+        grid-column: 1 / 4;
+        width: 100%;
+        height: 100%;
+
+    }
+    #fs-g-2 {
+        grid-row: 1 / 4;
+        grid-column: 4 / 7;
+        width: 100%;
+        margin: auto;
+    }
+    #fs-g-3 {
+        grid-row: 1 / 2;
+        grid-column: 7 / 10;
+        width: 100%;
+        margin: auto;
+    }
+    #fs-g-4 {
+        grid-row: 1 / 2;
+        grid-column: 10 / 13;
+        width: 100%;
+        margin: auto;
+
+    }
+    #fs-g-5 {
+        margin: auto;
+        grid-row: 2 / 4;
+        grid-column: 7 / 13;
+        width: 100%;
+    }
+
+    /*-- Portfolie --*/
+    .port-header {
+        background-image: url(../images/portfolie-header-desktop.png);
+        background-repeat: no-repeat;
+        background-position: 50% 0%;
+        background-size: 2000px;
+        height: 1000px;
+        width: 100%;
+    }
+
+    .port-header img {
+        width: 10%;
+    }
+    .port-header h1 {
+        margin: auto;
+        margin-top: 3%;
+    }
+
+    .pict-nav {
+        margin: auto;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr;
+    }
+    .pict-nav img {
+        width: 100%
+    }
+
+    .cases {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    .produkter {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+
+    .port-height {
+        height: 1280px;
+        width: 100%;
+    }
+
+
+    .port-case1 {
+        background-image: url(../images/case1-desktop.png);
+    }
+    .port-case2 {
+        background-image: url(../images/case2-desktop.png);
+    }
+    .port-case3 {
+        background-image: url(../images/case3-desktop.png);
+    }
+    .port-typografi {
+        background-image: url(../images/tyopgrafi-desktop.png);
+    }
+    .port-tuborg {
+        background-image: url(../images/tuborg-desktop.png);
+    }
+
+    .port-lay {
+        padding-top: 20%;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr 50px;
+    }
+    .port-lay h1 {
+        font-size: 6em;
+        padding-top: 25%;
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    .port-lay p {
+        display: block;
+        background-color: rgba(250, 250, 250, 0.9);
+        overflow: auto;
+        margin-top: 50%;
+        margin-right: 10%;
+        padding: 10%;
+        border-radius: 10px;
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    .port-lay img {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        margin-top: 3%;
+        margin-left: -9%;
+        width: 30%;
+        transition: width 0.3s;
+    }
+
+    .port-lay img:hover {
+        width: 35%;
+
+    }
+
+    /*-- case1 --*/
+    #case1 {
+        background-image: url(../images/case1-desktop.png);
+        background-repeat: no-repeat;
+        background-position: 50% 0%;
+        height: 1000px;
+        width: 100%;
+    }
+    #case1 h1 {
+        padding-top: 300px;
+    }
+    #case1 img {
+        padding-top: 300px;
+        position: static;
+        width: 20%;
+    }
+
+    #case1 img:hover {
+        width: 23%;
+    }
+    .case-grid {
+        margin-left: 5%;
+        margin-right: 5%;
+        display: grid;
+        grid-gap: 50px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(150px, auto);
+    }
+
+    .case-grid img {
+        width: 80%;
+    }
+
+    .toolbox {
+        text-align: center;
+        grid-column: 1 / 4;
+        grid-row: 1 / 2;
+    }
+
+    .case-logo {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    .resume {
+        margin: auto;
+        grid-column: 2 / 4;
+        grid-row: 2 / 3;
+    }
+
+    .case-billede1 {
+        grid-column: 2 / 4;
+        grid-row: 3 / 4;
+    }
+
+    .refleksion {
+        margin: auto;
+
+        grid-column: 1 / 2;
+        grid-row: 3 / 5;
+    }
+
+    .case-billede2 {
+        grid-column: 1 / 2;
+        grid-row: 6 / 7;
+    }
+
+    .hvad-har-jeg {
+        grid-column: 2 / 4;
+        grid-row: 4 / 5;
+    }
+
+    .case-billede3 {
+        grid-column: 2 / 4;
+        grid-row: 5 / 8;
+    }
+
+    /*-- Case2 --*/
+    #case2 {
+        background-image: url(../images/case2-desktop.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 0%;
+        height: 900px;
+        width: 100%;
+        color: white;
+        margin-bottom: 5%;
+    }
+
+    #case2 h1 {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+    #case2 p {
+        padding-left: 10%;
+    }
+
+    #case2 img {
+        padding-top: 180px;
+        padding-left: 10%;
+        width: 20%;
+
+    }
+    #case2 img:hover {
+        width: 23%;
+    }
+    #case2 a {
+        color: white;
+    }
+    #case2 a:visited {
+        color: white;
+    }
+
+    /*-- Case3 --*/
+    #case3 {
+        background-image: url(../images/case3-desktop.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 0%;
+        height: 900px;
+        width: 100%;
+        color: white;
+        margin-bottom: 5%;
+    }
+
+    #case3 h1 {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+    #case3 p {
+        padding-left: 10%;
+    }
+
+    #case3 img {
+        padding-top: 180px;
+        padding-left: 10%;
+    }
+    #case3 img:hover {
+        width: 23%;
+    }
+    #case3 a {
+        color: white;
+    }
+    #case3 a:visited {
+        color: white;
+    }
+
+    /*-- Typografi --*/
+    #typografi {
+        background-image: url(../images/tyopgrafi-desktop.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 0%;
+        height: 900px;
+        width: 100%;
+        color: white;
+        margin-bottom: 5%;
+    }
+
+    #typografi h1 {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+    #typografi p {
+        padding-left: 10%;
+    }
+
+    #typografi img {
+        padding-top: 180px;
+        padding-left: 10%;
+        width: 20%;
+    }
+    #typografi img:hover {
+        width: 23%;
+    }
+    #typografi a {
+        color: white;
+    }
+    #typografi a:visited {
+        color: white;
+    }
+
+    /*-- Tuborg --*/
+    #tuborg {
+        background-image: url(../images/tuborg-desktop.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 0%;
+        height: 900px;
+        width: 100%;
+        color: white;
+        margin-bottom: 5%;
+    }
+
+    #tuborg h1 {
+        padding-top: 300px;
+        padding-left: 10%;
+    }
+    #tuborg p {
+        padding-left: 10%;
+    }
+
+    #tuborg img {
+        padding-top: 180px;
+        padding-left: 10%;
+        width: 20%;
+    }
+    #tuborg img:hover {
+        width: 23%;
+    }
+    #tuborg a {
+        color: white;
+    }
+    #tuborg a:visited {
+        color: white;
+    }
+}
